@@ -28,6 +28,7 @@ add_library(sourcesdk::mathlib ALIAS sourcesdk_mathlib)
 target_link_libraries(sourcesdk_mathlib PRIVATE sourcesdk::common sourcesdk::tier0)
 target_include_directories(sourcesdk_mathlib PUBLIC ../public/mathlib)
 target_compile_definitions(sourcesdk_mathlib PRIVATE RAD_TELEMETRY_DISABLED MATHLIB_LIB)
+set_target_properties(sourcesdk_mathlib PROPERTIES FOLDER "sourcesdk")
 
 if(WIN32)
     set_target_properties(sourcesdk_mathlib PROPERTIES LINK_FLAGS_DEBUG "/NODEFAULTLIB:\"libcmt.lib\"")

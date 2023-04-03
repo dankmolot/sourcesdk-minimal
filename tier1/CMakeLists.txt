@@ -45,6 +45,7 @@ target_include_directories(sourcesdk_tier1 PUBLIC ../public/tier1)
 target_link_libraries(sourcesdk_tier1 PUBLIC sourcesdk::common sourcesdk::tier0)
 target_link_libraries(sourcesdk_tier1 PRIVATE sourcesdk::lzma)
 target_compile_definitions(sourcesdk_tier1 PRIVATE RAD_TELEMETRY_DISABLED TIER1_STATIC_LIB)
+set_target_properties(sourcesdk_tier1 PROPERTIES FOLDER "sourcesdk")
 
 if (WIN32)
     target_compile_definitions(sourcesdk_tier1 PRIVATE _DLL_EXT=.dll)

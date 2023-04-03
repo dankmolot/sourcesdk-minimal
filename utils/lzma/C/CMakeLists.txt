@@ -45,6 +45,7 @@ add_library(sourcesdk::lzma ALIAS sourcesdk_lzma)
 
 target_include_directories(sourcesdk_lzma PUBLIC .)
 target_compile_definitions(sourcesdk_lzma PRIVATE _7ZIP_ST)
+set_target_properties(sourcesdk_lzma PROPERTIES FOLDER "sourcesdk")
 
 if (WIN32)
     target_sources(sourcesdk_lzma PRIVATE "LzFindMt.c" "Lzma2DecMt.c" "MtCoder.c" "MtDec.c" "Threads.c")
