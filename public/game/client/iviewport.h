@@ -16,7 +16,7 @@
 #pragma once
 #endif
 
-#include <vgui/VGUI.h>
+#include <vgui/vgui.h>
 
 #include "viewport_panel_names.h"
 

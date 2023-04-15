@@ -12,7 +12,7 @@
 #pragma once
 #endif
 
-#include <vgui/VGUI.h>
+#include <vgui/vgui.h>
 #include <vgui/Dar.h>
 #include <color.h>
 #include <vgui_controls/Label.h>

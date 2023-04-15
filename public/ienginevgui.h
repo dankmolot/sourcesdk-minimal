@@ -14,7 +14,7 @@
 #endif
 
 #include "interface.h"
-#include "vgui/VGUI.h"
+#include "vgui/vgui.h"
 
 // Forward declarations.
 namespace vgui

@@ -11,7 +11,7 @@
 #pragma once
 #endif
 
-#include "vgui/VGUI.h"
+#include "vgui/vgui.h"
 #include "vgui_controls/CheckButton.h"
 #include "tier1/utlstring.h"
 #include "tier1/keyvalues.h"

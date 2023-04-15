@@ -11,7 +11,7 @@
 #endif
 
 #include "const.h"
-#include "vgui/VGUI.h"
+#include "vgui/vgui.h"
 
 #if !defined( _X360 )
 #include "xbox/xboxstubs.h"
