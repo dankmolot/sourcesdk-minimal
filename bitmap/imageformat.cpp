@@ -109,6 +109,7 @@ static ImageFormatInfo_t g_ImageFormatInfo[] =
 
 	{ "DXT1_RUNTIME",				0, 0, 0, 0, 0, 0, 0, true, false, false },		// IMAGE_FORMAT_DXT1_RUNTIME
 	{ "DXT5_RUNTIME",				0, 0, 0, 0, 8, 0, 0, true, false, false },		// IMAGE_FORMAT_DXT5_RUNTIME
+	{ "DXT3_RUNTIME",               0, 0, 0, 0, 8, 0, 0, true, false, false },		// IMAGE_FORMAT_DXT3_RUNTIME
 
 	// Vendor-dependent depth formats used for resolving
 	{ "INTZ",						4, 0, 0, 0, 0, 24, 8, false, false, true},		// IMAGE_FORMAT_INTZ
@@ -168,6 +169,7 @@ int GetMemRequired( int width, int height, int depth, int nMipmapCount, ImageFor
 				break;
 
 			case IMAGE_FORMAT_DXT3:
+			case IMAGE_FORMAT_DXT3_RUNTIME:
 			case IMAGE_FORMAT_DXT5:
 			case IMAGE_FORMAT_DXT5_RUNTIME:
 			case IMAGE_FORMAT_LINEAR_DXT3:
@@ -606,6 +608,7 @@ static D3DFORMAT s_pD3DFormats[] =
 	D3DFMT_UNKNOWN,		// IMAGE_FORMAT_LE_BGRA8888,
 	D3DFMT_DXT1,		// IMAGE_FORMAT_DXT5_RUNTIME,
 	D3DFMT_DXT5,		// IMAGE_FORMAT_DXT5_RUNTIME,
+	D3DFMT_DXT3,        // IMAGE_FORMAT_DXT3_RUNTIME
 	(D3DFORMAT)(MAKEFOURCC('I','N','T','Z')),		// IMAGE_FORMAT_INTZ,	
 #else
 	D3DFMT_UNKNOWN,		// IMAGE_FORMAT_D15S1,
