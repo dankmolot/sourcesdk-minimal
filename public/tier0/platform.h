@@ -364,6 +364,9 @@
 		#define PLATFORM_OPENGL 0
 	#endif
 
+    #ifndef IsPlatformOpenGL
+        #define IsPlatformOpenGL() PLATFORM_OPENGL
+    #endif
 #else
 	#error
 #endif
