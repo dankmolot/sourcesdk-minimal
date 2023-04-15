@@ -9,7 +9,3 @@ add_library(sourcesdk::raytrace ALIAS sourcesdk_raytrace)
 set_target_properties(sourcesdk_raytrace PROPERTIES FOLDER "sourcesdk")
 
 target_link_libraries(sourcesdk_raytrace PRIVATE sourcesdk::common sourcesdk::tier0 sourcesdk::tier1 sourcesdk::utils)
-
-if (WIN32)
-    set_target_properties(sourcesdk_raytrace PROPERTIES LINK_FLAGS_DEBUG "/NODEFAULTLIB:\"libcmt.lib\"")
-endif()
