@@ -7,14 +7,14 @@ target_compile_definitions(sourcesdk_common INTERFACE
     GMOD_USE_SOURCESDK
 )
 
-target_include_directories(sourcesdk_common INTERFACE SYSTEM 
+target_include_directories(sourcesdk_common SYSTEM INTERFACE 
     ../common
     ../game/shared
     ../public
 )
 
 # TODO: Make support for client dll
-target_include_directories(sourcesdk_common INTERFACE SYSTEM ../game/server)
+target_include_directories(sourcesdk_common SYSTEM INTERFACE ../game/server)
 
 if(WIN32) # Windows platform
     target_compile_definitions(sourcesdk_common INTERFACE WIN32)

@@ -41,7 +41,7 @@ set(SRC_FILES
 add_library(sourcesdk_tier1 STATIC EXCLUDE_FROM_ALL ${SRC_FILES})
 add_library(sourcesdk::tier1 ALIAS sourcesdk_tier1)
 
-target_include_directories(sourcesdk_tier1 PUBLIC ../public/tier1)
+target_include_directories(sourcesdk_tier1 SYSTEM PUBLIC ../public/tier1)
 target_link_libraries(sourcesdk_tier1 PUBLIC sourcesdk::common sourcesdk::tier0)
 target_link_libraries(sourcesdk_tier1 PRIVATE sourcesdk::lzma)
 target_compile_definitions(sourcesdk_tier1 PRIVATE RAD_TELEMETRY_DISABLED TIER1_STATIC_LIB)

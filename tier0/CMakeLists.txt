@@ -2,7 +2,7 @@ add_library(sourcesdk_tier0 INTERFACE EXCLUDE_FROM_ALL)
 add_library(sourcesdk::tier0 ALIAS sourcesdk_tier0)
 
 target_link_libraries(sourcesdk_tier0 INTERFACE sourcesdk::common)
-target_include_directories(sourcesdk_tier0 INTERFACE SYSTEM
+target_include_directories(sourcesdk_tier0 SYSTEM INTERFACE
     ../public/tier0
 )
 

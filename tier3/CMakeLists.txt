@@ -4,7 +4,7 @@ cmake_path(ABSOLUTE_PATH LIBS_PATH NORMALIZE)
 add_library(sourcesdk_tier3 INTERFACE EXCLUDE_FROM_ALL)
 add_library(sourcesdk::tier3 ALIAS sourcesdk_tier3)
 
-target_include_directories(sourcesdk_tier3 INTERFACE ../public/tier3)
+target_include_directories(sourcesdk_tier3 SYSTEM INTERFACE ../public/tier3)
 
 if (WIN32)
     target_link_libraries(sourcesdk_tier3 INTERFACE ${LIBS_PATH}/tier3.lib)
