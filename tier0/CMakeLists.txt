@@ -1,7 +1,7 @@
 add_library(sourcesdk_tier0 INTERFACE)
 add_library(sourcesdk::tier0 ALIAS sourcesdk_tier0)
 
-target_include_directories(sourcesdk_tier0 INTERFACE SYSTEM
+target_include_directories(sourcesdk_tier0 SYSTEM INTERFACE
     ../public/tier0
 )
 

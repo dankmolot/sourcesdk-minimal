@@ -43,7 +43,7 @@ set(SRC_FILES
 add_library(sourcesdk_lzma STATIC EXCLUDE_FROM_ALL ${SRC_FILES})
 add_library(sourcesdk::lzma ALIAS sourcesdk_lzma)
 
-target_include_directories(sourcesdk_lzma PUBLIC .)
+target_include_directories(sourcesdk_lzma SYSTEM PUBLIC .)
 target_compile_definitions(sourcesdk_lzma PRIVATE _7ZIP_ST)
 set_target_properties(sourcesdk_lzma PROPERTIES FOLDER "sourcesdk")
 

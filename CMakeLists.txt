@@ -33,15 +33,15 @@ elseif(UNIX AND NOT APPLE)
         GNUC
         SWDS
     )
-    target_compile_options(sourcesdk_internal INTERFACE
-        -Wvolatile
-        -Wunused-local-typedefs
-        -Wunused-parameter
-        -Wstrict-aliasing
-        -Wunknown-pragmas
-        -Wundef
-        -Wignored-attributes
-    )
+    # target_compile_options(sourcesdk_internal INTERFACE
+    #     -Wvolatile
+    #     -Wunused-local-typedefs
+    #     -Wunused-parameter
+    #     -Wstrict-aliasing
+    #     -Wunknown-pragmas
+    #     -Wundef
+    #     -Wignored-attributes
+    # )
     if(CMAKE_SIZEOF_VOID_P EQUAL 8)
         target_compile_definitions(sourcesdk_internal INTERFACE PLATFORM_64BITS)
         target_link_directories(sourcesdk_internal INTERFACE "lib/public/linux64")
@@ -62,17 +62,17 @@ else()
         OVERRIDE_V_DEFINES
         SWDS
     )
-    target_compile_options(sourcesdk_internal INTERFACE
-        -Wunused-local-typedef
-        -Wunused-parameter
-        -Wunused-private-field
-        -Woverloaded-virtual
-        -Wunknown-pragmas
-        -Wunused-variable
-        -Wunknown-warning-option
-        -Wundef
-        -Wexpansion-to-defined
-    )
+    # target_compile_options(sourcesdk_internal INTERFACE
+    #     -Wunused-local-typedef
+    #     -Wunused-parameter
+    #     -Wunused-private-field
+    #     -Woverloaded-virtual
+    #     -Wunknown-pragmas
+    #     -Wunused-variable
+    #     -Wunknown-warning-option
+    #     -Wundef
+    #     -Wexpansion-to-defined
+    # )
     if(CMAKE_SIZEOF_VOID_P EQUAL 8)
         target_compile_definitions(sourcesdk_internal INTERFACE PLATFORM_64BITS)
         target_link_directories(sourcesdk_internal INTERFACE "lib/public/osx64")

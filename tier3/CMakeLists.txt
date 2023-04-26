@@ -4,7 +4,7 @@ cmake_path(ABSOLUTE_PATH LIBS_PATH NORMALIZE)
 add_library(sourcesdk_tier3 INTERFACE)
 add_library(sourcesdk::tier3 ALIAS sourcesdk_tier3)
 
-target_include_directories(sourcesdk_tier3 INTERFACE ../public/tier3)
+target_include_directories(sourcesdk_tier3 SYSTEM INTERFACE ../public/tier3)
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     # message(WARNING "64-bit tier3 is not supported")
