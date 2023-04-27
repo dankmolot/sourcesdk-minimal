@@ -2,7 +2,6 @@ add_library(sourcesdk_common INTERFACE EXCLUDE_FROM_ALL)
 add_library(sourcesdk::common ALIAS sourcesdk_common)
 
 target_compile_definitions(sourcesdk_common INTERFACE
-    $<IF:$<BOOL:${CLIENT_DLL}>,CLIENT_DLL,GAME_DLL>
     RAD_TELEMETRY_DISABLED
     GMOD_USE_SOURCESDK
 )
@@ -13,8 +12,13 @@ target_include_directories(sourcesdk_common SYSTEM INTERFACE
     ../public
 )
 
-# TODO: Make support for client dll
-target_include_directories(sourcesdk_common SYSTEM INTERFACE ../game/$<IF:$<BOOL:${CLIENT_DLL}>,"client","server">)
+if(CLIENT_DLL)
+    target_compile_definitions(sourcesdk_common INTERFACE CLIENT_DLL)
+    target_include_directories(sourcesdk_common SYSTEM INTERFACE ../game/client)
+else()
+    target_compile_definitions(sourcesdk_common INTERFACE GAME_DLL)
+    target_include_directories(sourcesdk_common SYSTEM INTERFACE ../game/server)
+endif()
 
 if(WIN32) # Windows platform
     target_compile_definitions(sourcesdk_common INTERFACE WIN32)
