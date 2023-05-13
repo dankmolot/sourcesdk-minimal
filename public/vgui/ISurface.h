@@ -251,6 +251,7 @@ public:
 	};
 
 	virtual bool SetFontGlyphSet(HFont font, const char *windowsFontName, int tall, int weight, int blur, int scanlines, int flags, int nRangeMin = 0, int nRangeMax = 0) = 0;
+    virtual void* SetFontGlyphSet_Extended(unsigned long, char const*, int, int, int, int, int, bool) = 0;
 
 	// adds a custom font file (only supports true type font files (.ttf) for now)
 	virtual bool AddCustomFontFile(const char *fontName, const char *fontFileName) = 0;
@@ -341,7 +342,8 @@ public:
 	virtual void SetPanelForInput( VPANEL vpanel ) = 0;
 	virtual void DrawFilledRectFastFade( int x0, int y0, int x1, int y1, int fadeStartPt, int fadeEndPt, unsigned int alpha0, unsigned int alpha1, bool bHorizontal ) = 0;
 	virtual void DrawFilledRectFade( int x0, int y0, int x1, int y1, unsigned int alpha0, unsigned int alpha1, bool bHorizontal ) = 0;
-	virtual void DrawSetTextureRGBAEx(int id, const unsigned char *rgba, int wide, int tall, ImageFormat imageFormat ) = 0;
+    // GMOD DrawSetTextureRGBAEx ISNT THE SAME AS SOURCESDKS DrawSetTextureRGBAEx >:(
+	virtual void DrawSetTextureRGBAEx(int id, const unsigned char *rgba, int wide, int tall, ImageFormat imageFormat, int fuckery ) = 0;
 	virtual void DrawSetTextScale(float sx, float sy) = 0;
 	virtual bool SetBitmapFontGlyphSet(HFont font, const char *windowsFontName, float scalex, float scaley, int flags) = 0;
 	// adds a bitmap font file
@@ -400,6 +402,12 @@ public:
 	// !! WARNING! YOU MUST NOT ADD YOUR NEW METHOD HERE OR YOU WILL BREAK MODS !!
 	// !! Add your new stuff to the bottom of IMatSystemSurface instead.        !!
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    // Why, GMOD? Why?
+    virtual void* GMOD_ClearFontCache(void) = 0;
+	virtual void* GMOD_GetTextSize(unsigned long, wchar_t const*, int&, int&) = 0;
+	virtual void* GMOD_DrawGetColor(void) = 0;
+	virtual void* GMOD_DrawGetTextColor(void) = 0;
 };
 
 }
