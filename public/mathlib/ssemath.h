@@ -5,6 +5,7 @@
 //===========================================================================//
 #ifndef SSEMATH_H
 #define SSEMATH_H
+#pragma warning(disable: 4244)
 
 #if defined( _X360 )
 #include <xboxmath.h>
@@ -5969,4 +5970,5 @@ FORCEINLINE fltx4 operator*=( fltx4 &a, FLTX4 b )
 }
 
 #endif
+#pragma warning(default: 4244)
 #endif // _ssemath_h

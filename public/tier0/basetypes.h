@@ -12,6 +12,7 @@
 #pragma once
 #endif
 
+#pragma warning(disable: 28252)
 
 // This is a trick to get the DLL extension off the -D option on the command line.
 #define DLLExtTokenPaste(x) #x
@@ -834,5 +835,5 @@ COMPILE_TIME_ASSERT( ::is_copy_cheap< className >::value );
 
 #include "tier0/valve_on.h"
 
-
+#pragma warning(default: 28252)
 #endif // BASETYPES_H

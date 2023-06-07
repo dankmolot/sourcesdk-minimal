@@ -9,6 +9,8 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
+#pragma warning(disable: 26495)
+
 #if defined(__x86_64__) || defined(_WIN64)
 #define PLATFORM_64BITS 1
 #endif
@@ -2599,5 +2601,6 @@ PLATFORM_INTERFACE int V_tier0_snprintf( char *a, int n, PRINTF_FORMAT_STRING co
 PLATFORM_INTERFACE char const * Plat_GetEnv(char const *pEnvVarName);
 
 PLATFORM_INTERFACE bool Plat_GetExecutablePath(char* pBuff, size_t nBuff);
+#pragma warning(default: 26495)
 
 #endif /* PLATFORM_H */

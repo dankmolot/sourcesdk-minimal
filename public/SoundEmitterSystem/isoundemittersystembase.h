@@ -9,6 +9,7 @@
 #define ISOUNDEMITTERSYSTEMBASE_H
 #ifdef _WIN32
 #pragma once
+#pragma warning(disable: 4244)
 #endif
 
 
@@ -323,5 +324,7 @@ public:
 	virtual void			AddSoundsFromFile( const char *filename, bool bPreload, bool bAutoCache, bool bIsOverride = false ) = 0;
 
 };
+
+#pragma warning(default: 4244)
 
 #endif // ISOUNDEMITTERSYSTEMBASE_H

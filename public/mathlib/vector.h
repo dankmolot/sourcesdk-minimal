@@ -11,6 +11,7 @@
 
 #ifdef _WIN32
 #pragma once
+#pragma warning(disable: 26495)
 #endif
 
 #include <math.h>
@@ -3074,5 +3075,6 @@ inline  const Vector Snap( const Vector &a, float flSnap )
 	return Vector( Snap( a.x, flSnap ), Snap( a.y, flSnap ), Snap( a.z, flSnap ) );
 }
 
+#pragma warning(default: 26495)
 #endif
 
