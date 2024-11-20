@@ -69,8 +69,8 @@ void ConVar_PublishToVXConsole();
 typedef void ( *FnCommandCallbackVoid_t )( void );
 typedef void ( *FnCommandCallback_t )( const CCommand &command );
 
-#define COMMAND_COMPLETION_MAXITEMS		64
-#define COMMAND_COMPLETION_ITEM_LENGTH	64
+#define COMMAND_COMPLETION_MAXITEMS		128
+#define COMMAND_COMPLETION_ITEM_LENGTH	128
 
 //-----------------------------------------------------------------------------
 // Returns 0 to COMMAND_COMPLETION_MAXITEMS worth of completion strings
@@ -383,6 +383,9 @@ private:
 	virtual void				Create( const char *pName, const char *pDefaultValue, int flags = 0,
 									const char *pHelpString = 0, bool bMin = false, float fMin = 0.0,
 									bool bMax = false, float fMax = false, FnChangeCallback_t callback = 0 );
+
+	// Needed for Gmod, or else it causes a crash on level Shutdown.
+	virtual void				SetServerValue( const char* pName ) {};
 
 	// Used internally by OneTimeInit to initialize.
 	virtual void				Init();

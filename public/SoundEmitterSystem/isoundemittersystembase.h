@@ -9,6 +9,7 @@
 #define ISOUNDEMITTERSYSTEMBASE_H
 #ifdef _WIN32
 #pragma once
+#pragma warning(push)
 #pragma warning(disable: 4244)
 #endif
 
@@ -16,7 +17,7 @@
 #include "vstdlib/random.h"
 #include "soundflags.h"
 #include "mathlib/compressed_vector.h"
-#include "appframework/IAppSystem.h"
+#include "appframework/iappsystem.h"
 
 
 #define SOUNDEMITTERSYSTEM_INTERFACE_VERSION	"VSoundEmitter002"
@@ -270,6 +271,8 @@ public:
 	virtual void			Flush() = 0;
 };
 
-#pragma warning(default: 4244)
+#ifdef _WIN32
+#pragma warning(pop)
+#endif
 
 #endif // ISOUNDEMITTERSYSTEMBASE_H
