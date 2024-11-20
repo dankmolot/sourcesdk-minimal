@@ -12,7 +12,7 @@ set(SRC_FILES
     "generichash.cpp"
     "ilocalize.cpp"
     "interface.cpp"
-    "KeyValues.cpp"
+    "keyvalues.cpp"
     "kvpacker.cpp"
     "lzmaDecoder.cpp"
     "mempool.cpp"
