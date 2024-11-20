@@ -7,6 +7,11 @@
 #define SSEMATH_H
 #pragma warning(disable: 4244)
 
+#ifdef _WIN32
+#pragma warning(push)
+#pragma warning(disable: 4244)
+#endif
+
 #if defined( _X360 )
 #include <xboxmath.h>
 #elif defined ( _PS3 )
@@ -5970,5 +5975,9 @@ FORCEINLINE fltx4 operator*=( fltx4 &a, FLTX4 b )
 }
 
 #endif
-#pragma warning(default: 4244)
+
+#ifdef _WIN32
+#pragma warning(pop)
+#endif
+
 #endif // _ssemath_h

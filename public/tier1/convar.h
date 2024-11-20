@@ -14,6 +14,8 @@
 
 #if _WIN32
 #pragma once
+#pragma warning(push)
+#pragma warning(disable: 4244)
 #endif
 
 #include "tier0/dbg.h"
@@ -151,8 +153,8 @@ inline void ConVar_PublishToVXConsole() {}
 typedef void ( *FnCommandCallbackV1_t )( void );
 typedef void ( *FnCommandCallback_t )( const CCommand &command );
 
-#define COMMAND_COMPLETION_MAXITEMS		64
-#define COMMAND_COMPLETION_ITEM_LENGTH	64
+#define COMMAND_COMPLETION_MAXITEMS		128
+#define COMMAND_COMPLETION_ITEM_LENGTH	128
 
 //-----------------------------------------------------------------------------
 // Returns 0 to COMMAND_COMPLETION_MAXITEMS worth of completion strings
@@ -522,6 +524,9 @@ private:
 	virtual void				Create( const char *pName, const char *pDefaultValue, int flags = 0,
 									const char *pHelpString = 0, bool bMin = false, float fMin = 0.0,
 									bool bMax = false, float fMax = false, FnChangeCallback_t callback = 0 );
+
+	// Needed for Gmod, or else it causes a crash on level Shutdown.
+	virtual void				SetServerValue( const char* pName ) {};
 
 	// Used internally by OneTimeInit to initialize.
 	virtual void				Init();
@@ -1165,6 +1170,10 @@ private:
 		FORCEINLINE_CVAR float GetFloat() { return cvvalue; } \
 		FORCEINLINE_CVAR bool GetBool() { return (cvvalue != 0); } \
 	} cvname
+#endif
+
+#if _WIN32
+#pragma warning(pop)
 #endif
 
 #endif // CONVAR_H

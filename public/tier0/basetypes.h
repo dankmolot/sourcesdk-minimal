@@ -10,9 +10,10 @@
 
 #ifdef COMPILER_MSVC
 #pragma once
-#endif
-
+#pragma warning(push)
 #pragma warning(disable: 28252)
+#pragma warning(disable: 4244)
+#endif
 
 // This is a trick to get the DLL extension off the -D option on the command line.
 #define DLLExtTokenPaste(x) #x
@@ -835,5 +836,8 @@ COMPILE_TIME_ASSERT( ::is_copy_cheap< className >::value );
 
 #include "tier0/valve_on.h"
 
-#pragma warning(default: 28252)
+#ifdef _WIN32
+#pragma warning(pop)
+#endif
+
 #endif // BASETYPES_H

@@ -123,7 +123,7 @@ enum ImageFormat
 
 
 
-#if defined( DX_TO_GL_ABSTRACTION ) || defined(POSIX) || defined( _PS3 )
+#if defined( DX_TO_GL_ABSTRACTION ) || defined( _PS3 )
 typedef enum _D3DFORMAT
 	{
 		D3DFMT_INDEX16,

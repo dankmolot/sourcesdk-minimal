@@ -1,4 +1,4 @@
-//===== Copyright © 1996-2005, Valve Corporation, All rights reserved. ======//
+//===== Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ======//
 //
 // Purpose: A fast stack memory allocator that uses virtual memory if available
 //
@@ -9,6 +9,14 @@
 
 #if defined( _WIN32 )
 #pragma once
+#pragma warning(push)
+#pragma warning(disable: 4244)
+#endif
+
+#include "tier1/utlvector.h"
+
+#if defined( _WIN32 ) || defined( _PS3 )
+#define MEMSTACK_VIRTUAL_MEMORY_AVAILABLE
 #endif
 
 #include "tier1/utlvector.h"
@@ -360,5 +368,9 @@ inline MemoryStackMark_t CPhysicalMemoryStack::GetCurrentAllocPoint() const
 }
 
 #endif // _X360
+
+#if defined( _WIN32 )
+#pragma warning(pop)
+#endif
 
 #endif // MEMSTACK_H

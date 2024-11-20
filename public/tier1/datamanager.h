@@ -138,7 +138,6 @@ class CDataManager : public CDataManagerBase
 public:
 
 	CDataManager( unsigned int size = (unsigned)-1 ) : BaseClass(size) {}
-	
 
 	~CDataManager()
 	{

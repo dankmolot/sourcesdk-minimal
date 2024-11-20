@@ -21,9 +21,9 @@ namespace IAddonSystem
 		uint64_t wsid;
 		uint64_t creator;
 		uint64_t hcontent_file;
-		uint64_t placeholder4;
+		uint64_t size;
 		uint64_t hcontent_preview;
-		uint32_t placeholder6;
+		uint32_t timeadded;
 	};
 
 	struct UGCInfo
@@ -66,6 +66,7 @@ namespace Addon
 			virtual void ClearAllGMAs( ) = 0;
 			virtual void GetSteamUGCFile( uint64_t, bool ) = 0;
 			virtual void UnmountAddon( uint64_t ) = 0;
+			virtual void UnmountServerAddons( ) = 0;
 			virtual void MountFloatingAddons( ) = 0;
 			virtual void Shutdown( ) = 0;
 			virtual void AddFile( const SteamUGCDetails_t & ) = 0;

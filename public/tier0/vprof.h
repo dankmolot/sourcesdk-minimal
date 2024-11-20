@@ -48,6 +48,7 @@
 #ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable:4251)
+#pragma warning(disable:4244)
 #endif
 
 // enable this to get detailed nodes beneath budget
@@ -664,14 +665,14 @@ public:
 	void HideBudgetGroup( int budgetGroupID, bool bHide = true );
 	void HideBudgetGroup( const tchar *pszName, bool bHide = true ) { HideBudgetGroup( BudgetGroupNameToBudgetGroupID( pszName), bHide ); }
 
-	int *FindOrCreateCounter( const tchar *pName, CounterGroup_t eCounterGroup=COUNTER_GROUP_DEFAULT  );
+	int64 *FindOrCreateCounter( const tchar *pName, CounterGroup_t eCounterGroup=COUNTER_GROUP_DEFAULT  );
 	void ResetCounters( CounterGroup_t eCounterGroup );
 	
 	int GetNumCounters( void ) const;
 	
 	const tchar *GetCounterName( int index ) const;
-	int GetCounterValue( int index ) const;
-	const tchar *GetCounterNameAndValue( int index, int &val ) const;
+	int64 GetCounterValue( int index ) const;
+	const tchar *GetCounterNameAndValue( int index, long long &val ) const;
 	CounterGroup_t GetCounterGroup( int index ) const;
 
 	// Performance monitoring events.
@@ -741,7 +742,7 @@ protected:
 	bool		m_bPMEInit;
 	bool		m_bPMEEnabled;
 
-	int m_Counters[MAXCOUNTERS];
+	int64 m_Counters[MAXCOUNTERS];
 	char m_CounterGroups[MAXCOUNTERS]; // (These are CounterGroup_t's).
 	tchar *m_CounterNames[MAXCOUNTERS];
 	int m_NumCounters;
@@ -1422,7 +1423,7 @@ public:
 		*m_pCounter = val; 
 	}
 private:
-	int *m_pCounter;
+	int64 *m_pCounter;
 };
 
 #endif

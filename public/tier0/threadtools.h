@@ -52,6 +52,11 @@
 #pragma once
 #pragma warning(push)
 #pragma warning(disable:4251)
+#pragma warning(disable:4244)
+#endif
+
+#ifdef COMPILER_MSVC64
+#include <intrin.h>
 #endif
 
 #ifdef COMPILER_MSVC64
@@ -1275,8 +1280,8 @@ private:
 	MUTEX_TYPE &m_lock;
 
 	// Disallow copying
-	CAutoLockT( const CAutoLockT<MUTEX_TYPE> & );
-	CAutoLockT<MUTEX_TYPE> &operator=( const CAutoLockT<MUTEX_TYPE> & );
+	CAutoLockT( const CAutoLockT & );
+	CAutoLockT &operator=( const CAutoLockT & );
 };
 
 typedef CAutoLockT<CThreadMutex> CAutoLock;

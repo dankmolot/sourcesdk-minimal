@@ -32,6 +32,8 @@ class IEntitySaveUtils;
 class CRecipientFilter;
 class CStudioHdr;
 class ILuaObject;
+class IGMODDataTable;
+class ILuaInterface;
 
 // Matching the high level concept is significantly better than other criteria
 // FIXME:  Could do this in the script file by making it required and bumping up weighting there instead...
@@ -1095,15 +1097,7 @@ public:
 	// Ugly code to lookup all functions to make sure they are in the table when set.
 #ifdef _DEBUG
 
-#ifdef GNUC
-#define ENTITYFUNCPTR_SIZE	8
-#else
-#ifdef PLATFORM_64BITS
-#define ENTITYFUNCPTR_SIZE	8
-#else
-#define ENTITYFUNCPTR_SIZE	4
-#endif
-#endif
+#define ENTITYFUNCPTR_SIZE sizeof(ENTITYFUNCPTR)
 
 	void FunctionCheck( void *pFunction, const char *name );
 	ENTITYFUNCPTR TouchSet( ENTITYFUNCPTR func, char *name ) 
@@ -1139,11 +1133,12 @@ public:
 	// Which is remarkably slow.
 	// GetAttribInterface( CBaseEntity *pEntity ) in attribute_manager.h uses
 	//  this function, tests for NULL, and Asserts m_pAttributes == dynamic_cast.
-	inline IHasAttributes *GetHasAttributesInterfacePtr() const { return m_pAttributes; }
+	//inline IHasAttributes *GetHasAttributesInterfacePtr() const { return m_pAttributes; }
 
 protected:
 	// NOTE: m_pAttributes needs to be set in the leaf class constructor.
-	IHasAttributes *m_pAttributes;
+	// Raphael: m_pAttributes was added somewhere in the SourceSDK 2013. In the 2010 it doesn't exist and it's not in Gmod.
+	// IHasAttributes *m_pAttributes;
 
 private:
 	friend class CAI_Senses;
@@ -1433,6 +1428,7 @@ public:
 	virtual void	VPhysicsShadowUpdate( IPhysicsObject *pPhysics ) {}
 	virtual void	VPhysicsCollision( int index, gamevcollisionevent_t *pEvent );
 	virtual void	GMOD_VPhysicsCollision( int index, gamevcollisionevent_t *pEvent );
+	virtual matrix3x4_t GMOD_GetPhysBoneMatrix( int index );
 	virtual void	VPhysicsFriction( IPhysicsObject *pObject, float energy, int surfaceProps, int surfacePropsHit );
 	
 	// update the shadow so it will coincide with the current AI position at some time
@@ -1826,9 +1822,9 @@ public:
 	virtual bool IsVehicle() const;
 	virtual bool IsJeep() const;
 	virtual bool UsesLua();
+	virtual bool GMOD_ShouldPlayPhysicsSounds();
 	virtual int GetLuaEntityType();
 	virtual void PushEntity();
-	virtual void Push_This_Entity();
 	virtual void SetPhysObject( int, IPhysicsObject * );
 	virtual void SetEntity( const char *, CBaseEntity * );
 	virtual void DeleteOnRemove( CBaseEntity * );
@@ -1855,13 +1851,41 @@ public:
 	virtual void SetLuaTable( ILuaObject * );
 	virtual bool HasLuaTable();
 	virtual void ForcePhysicsDropObject();
+	virtual INextBot *GetNextBot();
+	virtual void SetPhysicsAttacker( CBasePlayer*, float );
 	virtual void StartDriving( CBasePlayer * );
 	virtual void FinishDriving( CBasePlayer * );
 	virtual bool GMOD_ShouldPreventTransmitToPlayer( CBasePlayer * );
 	virtual void GMOD_SetShouldPreventTransmitToPlayer( CBasePlayer *, bool );
-	virtual bool GMOD_ShouldPlayPhysicsSounds();
 	virtual void *Lua_GetLuaClass();
-	virtual INextBot *GetNextBot();
+	virtual void *GMOD_CreateBoneFollowers( int, char const** );
+	virtual void GMOD_UpdateBoneFollowers();
+	virtual void GMOD_DestroyBoneFollowers();
+	virtual void *GMOD_GetBoneFollowerMgr();
+
+public:
+	char m_strOverrideMaterial[255];
+	bool _offset1;
+	char m_strRealClassName[256];
+	int _offset2[3];
+	float m_fCreationTime;
+	int m_iMapCreatedID;
+	const char* m_SubMaterials[32];
+	int m_SubMaterialIndex[32]; // This is the index for the string in the networkstring stringtable -> util.NetworkIDToString(i) == m_SubMaterials[i]
+	void* offset3[9];
+	ILuaInterface* m_GMOD_LuaInterface; // A pointer to g_Lua?
+	ILuaObject* m_GMOD_LuaTable; // The Lua table
+	ILuaObject* m_GMOD_LuaObject; // A reference to the lua object -> Player object, Entity object etc
+	bool m_GMOD_bool[32];
+	float m_GMOD_float[32];
+	int m_GMOD_int[32];
+	Vector m_GMOD_Vector[32];
+	QAngle m_GMOD_QAngle[32];
+	EHANDLE m_GMOD_EHANDLE[32];
+	char m_GMOD_String[4][512];
+	unsigned char _offset4;
+	int m_iCreationID;
+	int _offset5[26];
 };
 
 // Send tables exposed in this module.

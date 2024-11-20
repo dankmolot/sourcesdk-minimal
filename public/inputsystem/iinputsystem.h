@@ -17,8 +17,7 @@
 #include "inputsystem/ButtonCode.h"
 #include "inputsystem/AnalogCode.h"
 #include <mathlib/vector.h>
-//#include "input_device.h"
-class InputDevice_t;
+#include "input_device.h"
 
 ///-----------------------------------------------------------------------------
 /// A handle to a cursor icon
